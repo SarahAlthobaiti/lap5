@@ -35,7 +35,7 @@ public class Customer {
 
     // setter for customer order
     public void setOrder(Order order){
-        // creates a copy of the provided order object and sets it as the customer order do not return the private obj
+        // creates a copy of the provided order object and sets it as the customer order 
         this.order = order.copy();
     }
 
@@ -56,7 +56,7 @@ public class Customer {
 
     // getter for customer order
     public String getOrder(){
-        // returns a string representation of the customer order
+        //A String containing information about the customer as a string
         return order.toString();
     }
     
