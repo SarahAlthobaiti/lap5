@@ -9,14 +9,12 @@ public class Customer {
 
     }
 
-    public Customer(Order order){
-     this.order = order.coby();
-    }
 
-    public Customer(String name, String contactNumber, String email) {
+    public Customer(String name, String contactNumber, String emai,Order order) {
         this.name = name;
         this.contactNumber = contactNumber;
         this.email = email;
+        this.order = order.copy();
     }
     
     public void setName(String name) {
