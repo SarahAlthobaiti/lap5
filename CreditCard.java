@@ -3,55 +3,78 @@ public class CreditCard extends Payment  {
     
  //Decalre all instance variables 
     
-   private  String cardNumber ;
+ private  long cardNumber ;
  private int expirationYear; 
  private int expirationMonth ;
  private String cvv ;
  
  
- public boolean validatenum;
+ //public boolean validatenum =true;
  
 
  // default constructor
  public CreditCard(){};
  
 // parameterized constructor
-     public CreditCard(String cardNumber,int expirationYear, int expirationMonth, String cvv ){
+     public CreditCard(int cardNumber,int expirationYear, int expirationMonth, String cvv ){
      this.cardNumber=cardNumber;
      this.expirationYear=expirationYear;
      this.expirationYear= expirationYear;
      this.cvv=cvv;
      }
 //method validate the Card Number
-public boolean validateCardNumber (String cardNumber ){
-    for (int i = 0; i < 17; i++) {
-        
+public boolean validateCardNumber (String cardNumber){
+    if ((cardNumber.length()+1)== 16){
+       return true;  
     }
- return validatenum;
+    else{
+        return false;
+    }
+}
+public boolean validateCardNumber(long n) {
+    long count = 0;
+    while (n != 0) {
+        n = n / 10;
+        count++;
+    }
+    if(count==16){
+       return true; 
+    }
+    else{
+       return false; 
+    }
+    
 }
 //method validate the cvv number
 public boolean validateCvv ( String cvv){
-    for (int i = 0; i < 4; i++) {
-        
+    if(cvv.length()==3){
+      return true; 
     }
-return validatenum;
+    else{
+      return false;  
+    }
 }
 //method validate the expiration Year 
 public  boolean validateExpirationYear (int expirationYear){
-for (int i = 0; i <5; i++) {
-        
-    }
-return validatenum;
+if (expirationYear > 2023){
+  return true;  
+}
+else{
+  return false;  
+}
 }
 //method validate the Expiration Month
 public  boolean validateExpirationMonth(int expirationMonth){
-for (int i = 0; i < 3; i++) {
-        
-    }
-return validatenum;
+if(expirationMonth>=1 && expirationMonth<=12 ){
+  return true;  
+}
+else{
+  return false; 
+}
+
 }
 // setter for card name
-public void setCardNumber(String cardNum ){
+public void setCardNumber(long cardNum ){
 this.cardNumber=cardNum;
 }
 // setter for Expiration Year
@@ -67,7 +90,7 @@ public void setCvv(String cvv ){
 this.cvv=cvv;
 }
 //getter for Card Number
-public String getCardNumber (){
+public long getCardNumber (){
 return this.cardNumber;
         
 }

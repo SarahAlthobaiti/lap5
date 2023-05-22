@@ -81,8 +81,33 @@ public class Driver {
         Customer customer1 = new Customer("Sarah", "0541953885", "Gadofawaz20@gmail.com",order1);
         System.out.println(customer1);
         
-        
-        
-    }
-    
-}
+        System.out.println("choose number \"1\" for cash or number \"2\" for creditcard : ");
+        int paymentWay = userIn.nextInt();
+        Cash pay;
+        CreditCard pay2;
+        if(paymentWay==1){
+            System.out.println("Enter the day of received :");
+            String day = userIn.next();
+             pay = new Cash(day);
+            System.out.println(pay);
+        }
+        else if(paymentWay==2){
+            pay2 = new CreditCard();
+            boolean v = true;
+            while(v){
+            System.out.println("please enter your card number: ");
+            //userIn.nextLine();
+            long cardNum = userIn.nextLong();
+            boolean  validateNum = pay2.validateCardNumber(cardNum);
+            System.out.println(validateNum);
+            System.out.println("please enter your card expiration year: ");
+            int year = userIn.nextInt();
+            boolean  validateYear = pay2.validateExpirationYear(year);
+            System.out.println(validateYear);
+            System.out.println("please enter your card expiration month: ");
+            int month = userIn.nextInt();
+            boolean  validateMonth = pay2.validateExpirationMonth(month);
+            System.out.println(validateMonth);
+            System.out.println("please enter your cvv number: ");
+            String cvvNum = userIn.next;
+            boolean cvv = pay2.
