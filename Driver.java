@@ -100,6 +100,7 @@ public class Driver {
             String cardNum = userIn.nextLine();
             boolean  validateNum = pay2.validateCardNumber(cardNum);
             System.out.println(validateNum);
+            System.out.println( cardNum.length());
             System.out.println("please enter your card expiration year: ");
             int year = userIn.nextInt();
             boolean  validateYear = pay2.validateExpirationYear(year);
