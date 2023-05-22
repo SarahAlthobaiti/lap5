@@ -3,7 +3,7 @@ public class CreditCard extends Payment  {
     
  //Decalre all instance variables 
     
- private  long cardNumber ;
+ private  String cardNumber ;
  private int expirationYear; 
  private int expirationMonth ;
  private String cvv ;
@@ -16,7 +16,7 @@ public class CreditCard extends Payment  {
  public CreditCard(){};
  
 // parameterized constructor
-     public CreditCard(int cardNumber,int expirationYear, int expirationMonth, String cvv ){
+     public CreditCard(String cardNumber,int expirationYear, int expirationMonth, String cvv ){
      this.cardNumber=cardNumber;
      this.expirationYear=expirationYear;
      this.expirationYear= expirationYear;
@@ -24,14 +24,14 @@ public class CreditCard extends Payment  {
      }
 //method validate the Card Number
 public boolean validateCardNumber (String cardNumber){
-    if ((cardNumber.length()+1)== 16){
+    if ((cardNumber.length())== 16){
        return true;  
     }
     else{
         return false;
     }
 }
-public boolean validateCardNumber(long n) {
+/*public boolean validateCardNumber(long n) {
     long count = 0;
     while (n != 0) {
         n = n / 10;
@@ -44,7 +44,7 @@ public boolean validateCardNumber(long n) {
        return false; 
     }
     
-}
+}*/
 //method validate the cvv number
 public boolean validateCvv ( String cvv){
     if(cvv.length()==3){
@@ -74,7 +74,7 @@ else{
 
 }
 // setter for card name
-public void setCardNumber(long cardNum ){
+public void setCardNumber(String cardNum ){
 this.cardNumber=cardNum;
 }
 // setter for Expiration Year
@@ -90,7 +90,7 @@ public void setCvv(String cvv ){
 this.cvv=cvv;
 }
 //getter for Card Number
-public long getCardNumber (){
+public String getCardNumber (){
 return this.cardNumber;
         
 }

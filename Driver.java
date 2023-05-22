@@ -88,7 +88,7 @@ public class Driver {
         if(paymentWay==1){
             System.out.println("Enter the day of received :");
             String day = userIn.next();
-             pay = new Cash(day);
+             pay = new Cash();
             System.out.println(pay);
         }
         else if(paymentWay==2){
@@ -96,8 +96,8 @@ public class Driver {
             boolean v = true;
             while(v){
             System.out.println("please enter your card number: ");
-            //userIn.nextLine();
-            long cardNum = userIn.nextLong();
+            userIn.nextLine();
+            String cardNum = userIn.nextLine();
             boolean  validateNum = pay2.validateCardNumber(cardNum);
             System.out.println(validateNum);
             System.out.println("please enter your card expiration year: ");
@@ -109,5 +109,20 @@ public class Driver {
             boolean  validateMonth = pay2.validateExpirationMonth(month);
             System.out.println(validateMonth);
             System.out.println("please enter your cvv number: ");
-            String cvvNum = userIn.next;
-            boolean cvv = pay2.
+            String cvvNum = userIn.next();
+            boolean cvv = pay2.validateCvv(cvvNum);
+           Boolean v1 = validateNum && validateYear && validateMonth && cvv;
+            if(v1){
+                pay2.setCardNumber(cardNum);
+                pay2.setExpirationYear(year);
+                pay2.setExpirationMonth(month);
+                pay2.setCvv(cvvNum);
+                System.out.println("Thank you");
+                v = false;
+            }else{
+                System.out.println("cheak your information");
+            }
+            }
+        }
+    }
+}
