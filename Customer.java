@@ -10,11 +10,14 @@ public class Customer {
     }
     
     // parameterized constructor
-    public Customer(String name, String contactNumber, String email, Order order) {
+    public Customer(String name, String contactNumber, String email) {
         this.name = name;
         this.contactNumber = contactNumber;
         this.email = email;
         // creates a copy of the provided order object and sets it as the customer order
+       
+    }
+    public Customer(Order order){
         this.order = order.copy();
     }
     

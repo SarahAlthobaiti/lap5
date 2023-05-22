@@ -48,7 +48,9 @@ public class Order {
    public int getNumberOfCakes(){
        return numberOfCakes;
    }
- 
+   public String paymentInfo(){
+    return payment.toString();
+   }
   
 
    // toString method, that override the implemntation and print all feild in class order
@@ -60,7 +62,7 @@ public class Order {
    public String toString(){
        //String str;
        //str = newCake+ "number of cakes: " + this.numberOfCakes +"\n"+ "payment info: " + payment.toString();
-       return  newCake.toString()+ "number of cakes: " + numberOfCakes;//+"\n"+ "payment info: " + payment.toString();
+       return  newCake.toString()+ "number of cakes: " + numberOfCakes ;//+"\n"+ "payment info: " + payment.toString();
    }
    
    // copy method, when we creat a new obj it copy the reference not the obj itself

@@ -3,17 +3,17 @@ public class Payment {
   // this variable detrmain if the payment is by card or cash   
   private String paymentMethod;
   // this variable detrmain the amount of the cost   
-  private double paymentCost;
+  //private double paymentCost;
   // this variable defines the tax value   
   private static final double CHARGE=0.15;
-  private double totalCost =0;
+  private double totalCost;
   //no-arg Constructor
       public Payment() {
       }
   //Constructor with Tow parametr 
-      public Payment(String paymentMethod,double paymentCost){
+      public Payment(String paymentMethod){
           this.paymentMethod=paymentMethod;
-          this.paymentCost=paymentCost;
+         // this.paymentCost=paymentCost;
       }
   //method that store paymentMethod
       public void setPaymentMethod(String paymentMethod) {
@@ -24,28 +24,32 @@ public class Payment {
           return paymentMethod;
       }
   //method that store paymentCost   
-      public void setPaymentCost(double paymentCost) {
+      /*public void setPaymentCost(double paymentCost) {
           this.paymentCost = paymentCost;
       }
   //method that return paymentCost of type double      
       public double getPaymentCost() {
           return paymentCost;
-      }
+      }*/
     
   //A method creates a new object and copy the fields one by one   
       public Payment copy(){
        Payment d = new Payment();
        d.paymentMethod=paymentMethod;
-       d.paymentCost=paymentCost;  
+       d.totalCost = totalCost;
+       //d.paymentCost=paymentCost;  
        return d;
       }
       
-      public double calculateCost(int cost){
-       
-     totalCost = (totalCost+ cost )*CHARGE;
-     return totalCost;
+      public void calculateCost(Double cost){
+       double z = cost * CHARGE;
+     this.totalCost = z + cost;
  
     }
+    public double getTotalCost(){
+        return totalCost;
+    }
+
       
   //method that return a String indicating the objects paymentMethod and paymentCost   
   
@@ -56,7 +60,7 @@ public class Payment {
   @Override
       public String toString(){
        
-       return "the paymentMethod " + this.paymentMethod + "\n"+"the paymentCost is"+this.paymentCost;        
+       return "the paymentMethod " +paymentMethod + "\n"+"the paymentCost is"+ totalCost;        
       }
       
   }
