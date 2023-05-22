@@ -27,59 +27,80 @@ public class Driver {
 
         cakesInfo.add(8,new Cake("lemon cake", 109 ,140, 35.00,"lemon", 6 ));
         cakesInfo.add(9,new Cake("lemon cake", 110 ,280, 65.00,"lemon", 12 ));
-        System.out.println("\"Welcom to our bakery \"");
-        System.out.println("here is our meneu: "+"\n");
-        System.out.println(cakesInfo);
-        System.out.println("please choose number of the cake that you want");
-        int Id = userIn.nextInt();
-        int index =0;
-        boolean check = true;
-        while (check){
-        if(Id>=101&&Id<=110){
-           switch(Id){
-            
-            case 101:
-                index = 0;
-                break;
-            case 102:
-                index = 1;
-                break;
-            case 103 :
-                index = 2;
-                break;
-            case 104 :
-                index = 3;
-                break;
-            case 105 :
-                index = 4;
-                break;
-            case 106 :
-                index = 5;
-                break;
-            case 107 :
-                index = 6;
-                break;
-            case 108 :
-                index = 7;
-                break;
-            case 109 :
-                index = 8;
-                break;
-            case 110 :
-                index = 9;
-                break;
-           
-                 } 
-           check = false;
-        }else{
-            System.out.println("Please try againe invalid number");
-            Id = userIn.nextInt();
-        }
-    }
+        System.out.println("\"Welcome to our bakery\"");
+        boolean makeAnotherOrder = true;
+        double totalCost = 0;
         
-        Order order1 = new Order(cakesInfo.get(0));
-        Customer customer1 = new Customer("Sarah", "0541953885", "Gadofawaz20@gmail.com",order1);
-        System.out.println(customer1);
+        while (makeAnotherOrder) {
+            System.out.println("Here is our menu:\n");
+            System.out.println(cakesInfo);
+        
+            System.out.println("Please choose the number of the cake you want:");
+            int id = userIn.nextInt();
+            int index = 0;
+            boolean validId = false;
+        
+            while (!validId) {
+                if (id >= 101 && id <= 110) {
+                    switch (id) {
+                        case 101:
+                            index = 0;
+                            break;
+                        case 102:
+                            index = 1;
+                            break;
+                        case 103:
+                            index = 2;
+                            break;
+                        case 104:
+                            index = 3;
+                            break;
+                        case 105:
+                            index = 4;
+                            break;
+                        case 106:
+                            index = 5;
+                            break;
+                        case 107:
+                            index = 6;
+                            break;
+                        case 108:
+                            index= 7;
+                            break;
+                        case 109:
+                            index = 8;
+                            break;
+                        case 110:
+                            index = 9;
+                            break;
+                    }
+                    validId = true;
+                } else {
+                    System.out.println("Invalid number. Please try again:");
+                    id = userIn.nextInt();
+                }
+            }
+        
+            Order order = new Order(cakesInfo.get(index));
+            totalCost += order.gatNewCake().getCost();
+        
+            System.out.println("Your order is: " + order);
+            System.out.println("Total cost so far: " + totalCost);
+        
+            System.out.println("Do you want to make another order? (yes or no)");
+            String answer = userIn.next();
+            while (!answer.equalsIgnoreCase("yes") && !answer.equalsIgnoreCase("no")) {
+                System.out.println("Invalid answer. Please enter yes or no:");
+                answer = userIn.next();
+            }
+        
+            if (answer.equalsIgnoreCase("no")) {
+                makeAnotherOrder = false;
+            }
+        }
+        
+        System.out.println("Thank you for your orders! Total cost: " + totalCost);
+        
         
         System.out.println("choose number \"1\" for cash or number \"2\" for creditcard : ");
         int paymentWay = userIn.nextInt();
