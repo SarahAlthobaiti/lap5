@@ -6,7 +6,7 @@ public class Payment {
   private double paymentCost;
   // this variable defines the tax value   
   private static final double CHARGE=0.15;
-  
+  private double totalCost =0;
   //no-arg Constructor
       public Payment() {
       }
@@ -31,13 +31,7 @@ public class Payment {
       public double getPaymentCost() {
           return paymentCost;
       }
-  //method that calculate the paymentCost and the tax value  
-      public double calculateAmount(double paymentCost){
-          
-       double total=paymentCost+(paymentCost*CHARGE);   
-       return total;   
-          
-      }
+    
   //A method creates a new object and copy the fields one by one   
       public Payment copy(){
        Payment d = new Payment();
@@ -46,6 +40,12 @@ public class Payment {
        return d;
       }
       
+      public double calculateCost(int cost){
+       
+     totalCost = (totalCost+ cost )*CHARGE;
+     return totalCost;
+ 
+    }
       
   //method that return a String indicating the objects paymentMethod and paymentCost   
   
