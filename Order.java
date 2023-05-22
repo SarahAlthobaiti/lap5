@@ -1,6 +1,6 @@
 public class Order {
     // declare all instance varible
-   public static double totalCost = 0; // this feild store the total cost of cakes 
+   // this feild store the total cost of cakes 
    private Payment payment; // this feild store information about payment 
    private Cake newCake; // this feild store information about cake like flavour and size...
    private int numberOfCakes; // this felid store number of cakes that the customer will order
@@ -11,9 +11,8 @@ public class Order {
    // parameterized constructor
    public Order(int numberOfCakes, Payment payment, Cake newCake){
        this.numberOfCakes = numberOfCakes;
-       this.payment = payment;
+       this.payment = payment.copy();
        this.newCake = newCake;
-       totalCost++;
    }
    
     public Order(Cake newCake){
@@ -49,6 +48,7 @@ public class Order {
    public int getNumberOfCakes(){
        return numberOfCakes;
    }
+ 
 
    // toString method, that override the implemntation and print all feild in class order
     /**
@@ -57,15 +57,17 @@ public class Order {
      */
     @Override
    public String toString(){
-       String str;
-       str = "cake info: "+newCake  +"total cost: " + totalCost +"\n"+ "number of cakes: " + this.numberOfCakes +"\n"+ "payment info: " + this.payment + "\n" + "cake info: " + this.newCake;
-       return str;
+       //String str;
+       //str = newCake+ "number of cakes: " + this.numberOfCakes +"\n"+ "payment info: " + payment.toString();
+       return  newCake+ "number of cakes: " + numberOfCakes+"\n"+ "payment info: " + payment.toString();
    }
    
    // copy method, when we creat a new obj it copy the reference not the obj itself
    public Order copy (){
        Order order = new Order();
+       order.newCake =newCake; 
        order.numberOfCakes = numberOfCakes;
+       order.payment = payment;
        return(order);
    }
 }
