@@ -131,15 +131,22 @@ public class Driver {
         Cash pay;
         // declare an object of type creditCard
         CreditCard pay2;
-        
+        // if statment to check if the user enter "cash" or not ? if he enter cash the following code will be excuted
         if(paymentWay.equalsIgnoreCase("Cash")){
+            // creat an object of type payment
             d = new Payment(paymentWay);
+            // Prompot the user to enter the day of received the cake 
             System.out.println("Enter the day of received :");
+            // store the day that user entered in day variable
             String day = userIn.next();
             System.out.println();
+            // creat an object of type cash and pass day as a parameter to the constuctor
             pay = new Cash(day);
+            // call calculate cost method and pass the cost of cake to it
             d.calculateCost(order1.gatNewCake().getCost());
+            // print pay object of class cash to display the cash info 
             System.out.println(pay);
+            // store payment method "cash" in object order
             order1.setPayment(d);
         }
         
