@@ -1,75 +1,64 @@
 public class CreditCard extends Payment  {
-    //its a child of class paymaent
-    
- //Decalre all instance variables 
-    
- private  String cardNumber ;
- private int expirationYear; 
- private int expirationMonth ;
- private String cvv ;
- 
- 
- //public boolean validatenum =true;
- 
+  //its a child of class paymaent
+  
+//Decalre all instance variables 
+  
+private String cardNumber ;// field store the number of the card
+private int expirationYear; // field store the expiration year of the card
+private int expirationMonth ;// field store the expiration month of the card
+private String cvv ;// field store the cvv number of the card
 
- // default constructor
- public CreditCard(){};
- 
+
+//public boolean validatenum =true;
+
+
+// no-arg constructor
+public CreditCard(){
+
+};
+
 // parameterized constructor
-     public CreditCard(String cardNumber,int expirationYear, int expirationMonth, String cvv ){
-     this.cardNumber=cardNumber;
-     this.expirationYear=expirationYear;
-     this.expirationYear= expirationYear;
-     this.cvv=cvv;
-     }
+   public CreditCard(String cardNumber,int expirationYear, int expirationMonth, String cvv ){
+   this.cardNumber=cardNumber;
+   this.expirationYear=expirationYear;
+   this.expirationYear= expirationYear;
+   this.cvv=cvv;
+   }
 //method validate the Card Number
 public boolean validateCardNumber (String cardNumber){
-    if ((cardNumber.length())== 16){
-       return true;  
-    }
-    else{
-        return false;
-    }
+  if ((cardNumber.length()%16) == 0){
+     return true;  
+  }
+  else{
+      return false;
+  }
 }
-/*public boolean validateCardNumber(long n) {
-    long count = 0;
-    while (n != 0) {
-        n = n / 10;
-        count++;
-    }
-    if(count==16){
-       return true; 
-    }
-    else{
-       return false; 
-    }
-    
-}*/
+
 //method validate the cvv number
 public boolean validateCvv ( String cvv){
-    if(cvv.length()==3){
-      return true; 
-    }
-    else{
-      return false;  
-    }
+  if(cvv.length()==3){
+    return true; 
+  }
+  else{
+    return false;  
+  }
 }
 //method validate the expiration Year 
 public  boolean validateExpirationYear (int expirationYear){
 if (expirationYear > 2023){
-  return true;  
+return true;  
 }
 else{
-  return false;  
+return false;  
 }
 }
 //method validate the Expiration Month
 public  boolean validateExpirationMonth(int expirationMonth){
 if(expirationMonth>=1 && expirationMonth<=12 ){
-  return true;  
+return true;  
 }
 else{
-  return false; 
+return false; 
 }
 
 }
@@ -92,7 +81,7 @@ this.cvv=cvv;
 //getter for Card Number
 public String getCardNumber (){
 return this.cardNumber;
-        
+      
 }
 //getter for Expiration Year
 public int getExpirationYear (){

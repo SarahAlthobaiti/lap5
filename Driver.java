@@ -1,5 +1,10 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.FileNotFoundException;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
+import java.io.IOException;
 /**
  *
  * @author 
@@ -10,25 +15,40 @@ public class Driver {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       Scanner userIn = new Scanner(System.in);
-       
+        Scanner userIn = new Scanner(System.in);
+        System.out.println("\"Welcome to our CAKE BARKERY\"");
         ArrayList<Cake> cakesInfo = new ArrayList<Cake>();
-        cakesInfo.add(0,new Cake("carrot cake", 101 ,140, 35.00,"carrot", 6 ));
-        cakesInfo.add(1,new Cake("carrot cake", 102 ,280, 65.00,"carrot", 12));
+        
+        String file ="text.txt";
+        Scanner scanner =null;
+        
+      try{  
+        scanner = new Scanner(new File(file));
+        while(scanner.hasNextLine()){
+            String line=scanner.nextLine();
+            String[]parts=line.split(",");
+            
+            String name = parts[0];
+            int id =Integer.parseInt(parts[1].trim());
+            double calories = Double.parseDouble(parts[2].trim());
+            double cost = Double.parseDouble(parts[3].trim());
+            String flavor =parts[4];
+            int size= Integer.parseInt(parts[5].trim());
+            
+            Cake cake =new Cake(name,id,calories,cost,flavor,size);
+            
+            cakesInfo.add(cake);
+            
+        }
+       
+        scanner.close();
+      }
+      
+      catch(FileNotFoundException e){
+          System.out.println(e.getMessage());
+      }
 
-        cakesInfo.add(2,new Cake("choco cake", 103 ,140, 35.00,"choco", 6 ));
-        cakesInfo.add(3,new Cake("choco cake", 104 ,280, 65.00,"choco", 12 ));
-
-        cakesInfo.add(4,new Cake("cheese cake", 105 ,140, 35.00,"berry", 6 ));
-        cakesInfo.add(5,new Cake("cheese cake", 106 ,280, 65.00,"berry", 12 ));
-
-        cakesInfo.add(6,new Cake("honey cake", 107 ,140, 35.00,"honey", 6 ));
-        cakesInfo.add(7,new Cake("honey cake", 108 ,280, 65.00,"honey", 12 ));
-
-        cakesInfo.add(8,new Cake("lemon cake", 109 ,140, 35.00,"lemon", 6 ));
-        cakesInfo.add(9,new Cake("lemon cake", 110 ,280, 65.00,"lemon", 12 ));
-        System.out.println("\"Welcom to our bakery \"");
-        System.out.println("here is our meneu: "+"\n");
+        System.out.println("Here is our meneu: "+"\n");
         System.out.println(cakesInfo);
         System.out.println("please choose number of the cake that you want");
         int Id = userIn.nextInt();
@@ -37,7 +57,6 @@ public class Driver {
         while (check){
         if(Id>=101&&Id<=110){
            switch(Id){
-            
             case 101:
                 index = 0;
                 break;
@@ -68,7 +87,6 @@ public class Driver {
             case 110 :
                 index = 9;
                 break;
-           
                  } 
            check = false;
         }else{
@@ -76,82 +94,89 @@ public class Driver {
             Id = userIn.nextInt();
         }
     }
+        //System.out.println("Do you want to order onother cake? yes/no");
         
         Order order1 = new Order(cakesInfo.get(index));
-
-       
-        System.out.println("Please enter your name:");
-        String name = userIn.next();
-        System.out.println("Please enter your phone number:");
-        String phone = userIn.next();
-
-        System.out.println("Please enter your email:");
-        String email = userIn.next();
-        Customer customer1 = new Customer(name, phone, email);
-        //System.out.println(customer1);
+        System.out.println("Enter your name: ");
+        userIn.nextLine();
+        String name = userIn.nextLine();
+        System.out.println("Enter your phone number: ");
+        String phoneNum = userIn.nextLine();
+        System.out.println("Enter your email: ");
+        String email = userIn.nextLine();
         
-        System.out.println("choose number \"1\" for cash or number \"2\" for creditcard : ");
-        int paymentWay = userIn.nextInt();
+        System.out.println();
+        System.out.println("write payment method cash or credit card : ");
+        String paymentWay = userIn.nextLine();
+        Payment d;
         Cash pay;
         CreditCard pay2;
-        if(paymentWay==1){
-            pay = new Cash();
-            pay.setPaymentMethod("cash");
+        if(paymentWay.equalsIgnoreCase("Cash")){
+            d = new Payment(paymentWay);
             System.out.println("Enter the day of received :");
             String day = userIn.next();
             System.out.println();
-            System.out.println("Thank you for ordarind from our bakery");
+            pay = new Cash(day);
+            d.calculateCost(order1.gatNewCake().getCost());
             System.out.println(pay);
-           // System.out.println(order1.gatNewCake().getCost());
-            pay.calculateCost(order1.gatNewCake().getCost());
-            customer1.setOrder(order1);
-            System.out.println(customer1);
-            System.out.println(pay.getPaymentMethod());
-            System.out.println(pay.getTotalCost());
-          
-            //System.out.println(order1.paymentInfo());
-
+            order1.setPayment(d);
         }
-        else if(paymentWay==2){
+        
+        else if(paymentWay.equalsIgnoreCase("credit card")){
             pay2 = new CreditCard();
-            pay2.setPaymentMethod("credit card");
+            d = new Payment(paymentWay);
             boolean v = true;
             while(v){
             System.out.println("please enter your card number: ");
-            userIn.nextLine();
             String cardNum = userIn.nextLine();
             boolean  validateNum = pay2.validateCardNumber(cardNum);
-            System.out.println(validateNum);
-            System.out.println( cardNum.length());
             System.out.println("please enter your card expiration year: ");
             int year = userIn.nextInt();
             boolean  validateYear = pay2.validateExpirationYear(year);
-            System.out.println(validateYear);
             System.out.println("please enter your card expiration month: ");
             int month = userIn.nextInt();
             boolean  validateMonth = pay2.validateExpirationMonth(month);
-            System.out.println(validateMonth);
             System.out.println("please enter your cvv number: ");
-            String cvvNum = userIn.next();
-            boolean cvv = pay2.validateCvv(cvvNum);
-           Boolean v1 = validateNum && validateYear && validateMonth && cvv;
-            if(v1){
-                pay2.setCardNumber(cardNum);
-                pay2.setExpirationYear(year);
-                pay2.setExpirationMonth(month);
-                pay2.setCvv(cvvNum);
-                System.out.println("Thank you for ordarind from our bakery");
-                pay2.calculateCost(order1.gatNewCake().getCost());
-                customer1.setOrder(order1);
-                System.out.println(customer1);
-                System.out.println(pay2.getPaymentMethod());
-                System.out.println(pay2.getTotalCost());
-                //System.out.println(order1.paymentInfo());
-                v = false;
-            }else{
-                System.out.println("cheak your information");
+            userIn.nextLine();
+            String cvv = userIn.nextLine();
+            boolean  validateCvv = pay2.validateCvv(cvv);
+            boolean v1=(validateNum && validateYear && validateMonth && validateCvv);
+            if (v1){
+            pay2.setCardNumber(cardNum);
+            pay2.setExpirationYear(year);
+            pay2.setExpirationMonth(month);
+            pay2.setCvv(cvv);
+            d.calculateCost(order1.gatNewCake().getCost());
+            //pay2 = new CreditCard (cardNum,year,month,cvv);
+            order1.setPayment(d);
+            System.out.println("THANK YOU");
+            v=false;
             }
-            }
+            else{
+                System.out.println("please check your card information again");
+             }  
+            } 
+            System.out.println();
+        }
+        Customer customer1 = new Customer(name, phoneNum,email ,order1);
+        String customerfile="customerinfo.txt";
+        Scanner ip=null;    
+        PrintWriter op=null;
+        try {
+           op= new PrintWriter ("customerinfo.txt");           
+           ip = new Scanner (new File (customerfile));
+           op.println(customer1);           
+           op.close();
+          while (ip.hasNextLine()){
+            String line =ip.nextLine();   
+            System.out.println(line); 
+        }        
+          ip.close();
+          op.close();        
+        }
+        catch(FileNotFoundException e){
+           System.out.println("cannot find file"+ customerfile);
         }
     }
+    
 }

@@ -1,13 +1,15 @@
 public class Cash extends Payment{
    private String DayOfReceived ; // the day that Customer chose to receive the cake
-   public final String Location = "Cake bakery in Alawali"; // the adress that a customer inter to receive the cake
-   private double totalCost;
+   public final String Location = "Cake bakery in Alawali"; // the adress that a customer come to receive the cake
+  // private double totalCost;
    
    // no-arg Constructor
-    public Cash(){ } 
+    public Cash(){
+    
+    } 
     
 
-    // Constructor takes 2 parameters
+    // Constructor takes one parameters
     public Cash(String dayofreceived ){
        this.DayOfReceived = dayofreceived;
     }
@@ -25,21 +27,21 @@ public class Cash extends Payment{
      return DayOfReceived; 
   }
 
-    public void SetTotalCost(double tcost){
+   /* public void SetTotalCost(double tcost){
       this.totalCost=tcost;
   }
     
     public double getTotalCost(){
        return this.totalCost;
-  }
+  }*/
    /**
     *
     * @return
     */
    @Override
      public String toString(){
-      
-      return "We are preparing your order and here is our location: "+Location+" do not forget to pick up your order.";
+      // method that return a String indicating the objects location 
+      return "We are preparing your order and here is our location: "+Location+" do not forget to pick up your order!.\n";
   }
      
 }

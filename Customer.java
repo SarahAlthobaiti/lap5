@@ -4,20 +4,17 @@ public class Customer {
     private String email; // customer email address
     private Order order; // customer order
     
-    // default constructor
+    // constructor with no-arg
     public Customer(){
         
     }
     
     // parameterized constructor
-    public Customer(String name, String contactNumber, String email) {
+    public Customer(String name, String contactNumber, String email, Order order) {
         this.name = name;
         this.contactNumber = contactNumber;
         this.email = email;
         // creates a copy of the provided order object and sets it as the customer order
-       
-    }
-    public Customer(Order order){
         this.order = order.copy();
     }
     
@@ -64,8 +61,14 @@ public class Customer {
     }
     
     //Information about the customer.
+
+    /**
+     *
+     * @return
+     */
+    @Override
     public String toString() {
         // returns a string containing customer name, contact number, email address, and order information
-        return "Name: " + name + "\nContact number: " + contactNumber + "\nEmail: " + email + "\nOrder Information: " + order.toString();
+        return "Name: " + name + "\n"+"Contact number: " + contactNumber + "\n"+"Email: " + email + "\n"+"Order Information: " + order.toString();
     }
 }
